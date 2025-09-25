@@ -17,7 +17,6 @@ const Toast: React.FC<ToastProps> = ({ message, id, position, onRemove, setExpan
     const target = event.target as HTMLElement;
     const classValue = target.getAttribute('class');
 
-    console.log(classValue);
     if (classValue === 'toast__button-remove') {
       setRemoveElement(true);
       setTimeout(() => {
