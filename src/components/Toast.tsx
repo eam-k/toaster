@@ -9,9 +9,7 @@ export interface ToastProps {
   expand: boolean;
 }
 
-export const Toast: React.FC<ToastProps> = ({ message, id, position, onRemove, setExpand, expand }) => {
-  // TODO: visuals, transitions, onRemove button
-
+const Toast: React.FC<ToastProps> = ({ message, id, position, onRemove, setExpand, expand }) => {
   const [removeElement, setRemoveElement] = useState(false);
 
   const onClickHandler: React.MouseEventHandler<HTMLDivElement> = event => {
@@ -30,6 +28,7 @@ export const Toast: React.FC<ToastProps> = ({ message, id, position, onRemove, s
     }
   };
 
+  // const firstMessage = position === 0 // For ADA in the future we can anounce errors.
   const toastMessageClass = `toast__message-body`;
   // Control animations when the stack is collapsed, if expanded nothing must be applied.
   const positionClass = ` ${position < 3 ? `position-${position}` : 'hidden'}`;
@@ -40,11 +39,17 @@ export const Toast: React.FC<ToastProps> = ({ message, id, position, onRemove, s
   return (
     <div className={toastMessageClass.concat(expandedClass, removeMessageClass)} onClick={onClickHandler}>
       <div className="toast__message-wrapper">
-        <span className="toast__message">{message}</span>
-        <button className="toast__button-remove">X</button>
+        <span className="toast__message" data-testid="toast-message-notification">
+          {message}
+        </span>
+        <button className="toast__button-remove" aria-label="close-toast-message" data-testid="toaster-buttons-remove">
+          X
+        </button>
       </div>
     </div>
   );
 };
+
+export default Toast;
 
 Toast.displayName = 'Toast';

@@ -8,42 +8,41 @@ $dark-gray-1: #b0b0b0;
 // ╚════════════════════════╝
 
 .toast__section {
-    position: fixed;
-    transform: translate(-50%, 0);
-    left: 50%;
-    top: 0;
-    margin-top: 40px;
-    min-width: 20rem;
-    max-width: 35rem;
+  position: fixed;
+  transform: translate(-50%, 0);
+  left: 50%;
+  top: 0;
+  margin-top: 40px;
+  min-width: 20rem;
+  max-width: 35rem;
 
-    display: flex;
-    flex-flow: row nowrap;
-    gap: 1rem;
-    width: 50%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  width: 50%;
 
-    justify-content: space-between;
-    &.expanded {
-        // animation: fade_in 0.1s ease-in 0s 1 normal forwards;
-        .toast__section-messages > * {
-            position: initial;
-            margin-bottom: 1rem;
-        }
-        .toast__message-body {
-            border-radius: 0.5rem;
-            // width: 20rem;
-        }
-        .toast__section-buttons {
-            display: flex;
-            flex-flow: column nowrap;
-        }
+  justify-content: space-between;
+  &.expanded {
+    .toast__section-messages > * {
+      position: initial;
+      margin-bottom: 1rem;
     }
-
-    &.disappear.expanded {
-        .toast__message-body {
-            animation: fade_out 0.25s ease-in 0s 1 normal forwards;
-        }
+    .toast__message-body {
+      border-radius: 0.5rem;
+      // width: 20rem;
     }
-    transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    .toast__section-buttons {
+      display: flex;
+      flex-flow: column nowrap;
+    }
+  }
+
+  &.disappear.expanded {
+    .toast__message-body {
+      animation: fade_out 0.25s ease-in 0s 1 normal forwards;
+    }
+  }
+  transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 // ╔══════════╗
@@ -51,116 +50,116 @@ $dark-gray-1: #b0b0b0;
 // ╚══════════╝
 
 .toast__section-messages {
-    width: 95%;
+  width: 95%;
 }
 
 .toast__message-body {
-    position: absolute;
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    border-radius: 0.5rem;
-    height: 2.8rem;
-    border: $border-color-1;
-    animation: animation_top_to_bottom 0.2s ease-in 0s 1 normal;
+  position: absolute;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  height: 2.8rem;
+  border: $border-color-1;
+  animation: animation_top_to_bottom 0.2s ease-in 0s 1 normal;
 
-    --stack-offset: 0px;
-    --stack-width: 100%;
-    --stack-radius: 0.5rem;
-    --stack-z: 10;
-    --stack-left: 0;
+  --stack-offset: 0px;
+  --stack-width: 100%;
+  --stack-radius: 0.5rem;
+  --stack-z: 6;
 
-    top: var(--stack-offset);
-    width: var(--stack-width);
-    border-radius: var(--stack-radius);
-    z-index: var(--stack-z);
-    left: var(--stack-left);
-    max-width: 35rem;
+  top: var(--stack-offset);
+  width: var(--stack-width);
+  border-radius: var(--stack-radius);
+  z-index: var(--stack-z);
+  left: 0;
+  max-width: 35rem;
+  .toast__button-remove {
+    visibility: hidden;
+  }
+  &:hover .toast__button-remove {
+    visibility: visible;
+  }
+
+  &.remove {
     .toast__button-remove {
-        visibility: hidden;
+      visibility: hidden;
     }
-    &:hover .toast__button-remove {
-        visibility: visible;
+    animation: animation_bottom_to_top 0.1s ease-in 0s 1 normal forwards;
+    .toast__message-body.position-1 {
+      --stack-radius: 0.5rem;
     }
+  }
 
-    &.remove {
-        .toast__button-remove {
-            visibility: hidden;
-        }
-        animation: animation_bottom_to_top 0.1s ease-in 0s 1 normal forwards;
-        .toast__message-body.position-1 {
-            --stack-width: 100%;
-            --stack-radius: 0.5rem;
-        }
+  &.hidden {
+    transform: scale(0.5);
+    visibility: hidden;
+    z-index: -11;
+    .toast__button-remove {
+      visibility: hidden;
     }
+  }
 
-    &.hidden {
-        transform: scale(0.5);
-        visibility: hidden;
-        z-index: -11;
-        .toast__button-remove {
-            visibility: hidden;
-        }
-    }
-
-    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .toast__message-wrapper {
-    width: calc(100%);
-    position: relative;
+  width: 100%;
+  padding: 0.3rem;
+  position: relative;
 }
 
 .toast__message {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.5;
-    text-align: initial;
-    margin: 0.3rem;
-    font-size: 0.7rem;
-    font-weight: 700;
+  display: -webkit-box;
+  width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  text-align: start;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .toast__button-remove {
-    display: flex;
-    height: 0.8rem;
-    width: 0.3rem;
-    background-color: rgb(178, 177, 177);
-    border: none;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.5rem;
-    position: absolute;
-    transform: translate(50%, -50%);
-    right: 0.2rem;
-    top: 0.2rem;
+  display: flex;
+  height: 0.8rem;
+  width: 0.3rem;
+  background-color: $dark-gray-1;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  position: absolute;
+  transform: translate(50%, -50%);
+  right: 0.2rem;
+  top: 0.2rem;
 }
 
 .toast__message-body.position-0 {
-    --stack-offset: 0px;
-    --stack-width: 100%;
-    --stack-z: 10;
+  --stack-offset: 0px;
+  --stack-width: 100%;
+  --stack-z: 10;
 }
 
 .toast__message-body.position-1 {
-    --stack-offset: 10px;
-    transform: scale(0.95);
-    --stack-z: 1;
-    border-color: $border-color-2;
-    .toast__button-remove {
-        visibility: hidden;
-    }
+  --stack-offset: 10px;
+  scale: 0.95;
+  --stack-z: 8;
+  border-color: $border-color-2;
+  .toast__button-remove {
+    visibility: hidden;
+  }
 }
 
 .toast__message-body.position-2 {
-    --stack-offset: 18px;
-    transform: scale(0.9);
-    --stack-z: -10;
-    .toast__button-remove {
-        visibility: hidden;
-    }
+  --stack-offset: 18px;
+  scale: 0.9;
+  --stack-z: 6;
+  .toast__button-remove {
+    visibility: hidden;
+  }
 }
 
 // ╔═══════════════════════╗
@@ -168,60 +167,56 @@ $dark-gray-1: #b0b0b0;
 // ╚═══════════════════════╝
 
 @keyframes animation_top_to_bottom {
-    0% {
-        transform: translateY(-2.5rem);
-        top: -4rem;
-    }
+  0% {
+    transform: translateY(-2.5rem);
+    top: -4rem;
+  }
 
-    100% {
-        transform: translateY(0);
-        top: 0;
-    }
+  100% {
+    transform: translateY(0);
+    top: 0;
+  }
 }
 
 @keyframes animation_bottom_to_top {
-    0% {
-        transform: translateY(0);
-        top: 0;
-    }
+  0% {
+    transform: translateY(0);
+    top: 0;
+  }
 
-    100% {
-        transform: translateY(-2.5rem);
-        opacity: 0;
-        top: -1.5rem;
-    }
+  100% {
+    transform: translateY(-2.5rem);
+    opacity: 0;
+    top: -1.5rem;
+  }
 }
 
 @keyframes fade_out {
-    0% {
-        opacity: 0.9;
-        transform: scale(1);
-        // transform: translateY(0);
-    }
+  0% {
+    opacity: 0.9;
+  }
 
-    50% {
-        opacity: 0.5;
-        transform: scale(0.8) translate(-10px);
-        // transform: translateY(-2rem);
-    }
-    100% {
-        opacity: 0.2;
-        // transform: scale(0.8);
-        transform: scale(0.5) translateY(-20px);
-    }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8) translate(-10px);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.5) translateY(-20px);
+  }
 }
 
 @keyframes fade_in {
-    0% {
-        opacity: 0;
-        scale: 1;
-    }
+  0% {
+    opacity: 0;
+    scale: 1;
+  }
 
-    100% {
-        opacity: 1;
-        scale: 0.5;
-        transform: translateY(-1rem);
-    }
+  100% {
+    opacity: 1;
+    scale: 0.5;
+    transform: translateY(-1rem);
+  }
 }
 
 // ╔═════════╗
@@ -229,24 +224,24 @@ $dark-gray-1: #b0b0b0;
 // ╚═════════╝
 
 .toast__section-buttons {
-    display: none;
+  display: none;
 }
 
 .toast__button {
-    border-radius: 1.5rem;
-    border: 1px solid transparent;
-    padding: 0.2rem;
-    background-color: transparent;
-    color: white;
+  border-radius: 1.5rem;
+  border: 1px solid transparent;
+  padding: 0.2rem;
+  background-color: transparent;
+  color: white;
 
-    cursor: pointer;
-    transition: border-color 0.25s;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
 .toast__button:hover {
-    background-color: $light-gray-1;
+  background-color: $light-gray-1;
 }
 
 .toast__button:active {
-    background-color: $dark-gray-1;
+  background-color: $dark-gray-1;
 }

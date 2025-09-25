@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import './App.scss';
-import { Toaster } from './components/Toaster';
+import Toaster from './components/Toaster';
 import { makeToast, ToastMessageProps } from './model/toaster-message-creator';
 
 export default function App() {
