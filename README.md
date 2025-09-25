@@ -48,3 +48,13 @@ export default tseslint.config({
   },
 });
 ```
+
+## Notes
+
+I really enjoyed working on this exercise! It presented some interesting challenges around state management and animations that made it quite engaging to work through.
+
+For the styling approach, I kept things fairly agnostic and similar to what was shown in the video example. I felt this would demonstrate the core functionality without getting too caught up in visual design details.
+
+Of course, there are many additional considerations we could explore further, things like accessibility enhancements, more sophisticated animation sequences, error handling edge cases, and performance optimizations for handling large numbers of toasts. I made the decision to focus on implementing the essential component functionality first, as I believe this covers the main requirements effectively.
+
+I'm documenting some of these additional ideas and technical decisions in my notes, which I'd be happy to discuss in more detail if we move forward in the process. Looking forward to hearing your thoughts!
